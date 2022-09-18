@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import { RegisterUser }from "../mock";
 
 const AuthContext = createContext();
 
@@ -35,7 +36,10 @@ export const AuthProvider = ({ children }) => {
         email: registerData.email,
         first_name: registerData.firstName,
         last_name: registerData.lastName,
+        role: registerData.role
       };
+      const fakeJwt = RegisterUser(finalData)
+      console.log(fakeJwt)
       let response = await axios.post(`${BASE_URL}/register/`, finalData);
       if (response.status === 201) {
         console.log("Successful registration! Log in to access token");
