@@ -1,8 +1,15 @@
 # from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 
 class User(AbstractUser):
-    pass
+    is_client = models.BooleanField('client status', default=False)
+    is_therapist = models.BooleanField('therapist status', default=False)    
+    user_city = models.CharField(max_length=50)
+
+
+
+
     '''
     This is a custom version of the built in User class
     It contains all of the built in fields and functionality of the standard User
