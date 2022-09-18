@@ -5,6 +5,8 @@ import useAuth from "../../hooks/useAuth";
 
 import axios from "axios";
 
+const defaultLocation = "Boston";
+
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
@@ -20,8 +22,8 @@ const HomePage = () => {
     const getCurrentWeather = async () => {
       console.log("User data: ", user);
       const weatherAPIKey = "f2d6edaf76a08d251081138303dc4d4d0";
-      const city = user ? user.city || "Boston" : "Boston";
-      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Boston&appid=7153eddf8673183aab1b3ea688313beb`);
+      const city = user ? user.user_city : defaultLocation;
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=7153eddf8673183aab1b3ea688313beb`);
 
       console.log("Weather: ", response.data);
       setCurrentWeather(response.data);
@@ -39,15 +41,24 @@ const HomePage = () => {
       </div>
       <div>
         {currentWeather ?
-          <p>Current Weather: {currentWeather.weather[0].description}</p> :
+          <p>Current Weather In {user ? user.user_city : defaultLocation}: {currentWeather.weather[0].description}</p> :
           <p>Getting current weather...</p>
         }
       </div>
-      {user &&
+      {user ?
         <div>
           <Link to="/journal">
             <h3>My Journal</h3>
           </Link>
+          {user.is_therapist &&
+            <Link to="/therapist/dashboard">
+              <h3>Therapist Dashboard</h3>
+            </Link>
+          }
+        </div> :
+
+        <div>
+          <p>New User? <Link to="/register">Sign up here!</Link></p>
         </div>
       }
     </div>

@@ -1,12 +1,14 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 
+import { API_BASE_URL } from "../../config/api";
+
 const TherapistDashboard = () => {
     const [clientsData, setClientsData] = useState([]);
 
     useEffect(() => {
         const getUserJournals = async () => {
-            const response = await axios.get("http://localhost:8000/therapist/journals");
+            const response = await axios.get(`${API_BASE_URL}/therapist/journals`);
             console.log("All journals: ", response.data);
             
             setClientsData(response.data.clients);
@@ -15,12 +17,15 @@ const TherapistDashboard = () => {
         getUserJournals();
     }, [])
 
-    const renderJournals = (journals) => {
-        return journals.map(journal => {
+    const renderJournals = (entries) => {
+        return entries.map(entry => {
             return (
-                <div key={`journal-${journal.title}`}>
-                    <p>Title: {journal.title}</p>
-                    <p>Mood: {journal.current_mood}</p>
+                <div key={`entry-${entry.title}`}>
+                    <p>Title: {entry.title}</p>
+                    <p>Description: {entry.description}</p>
+                    <pre>Content: {entry.content}</pre>
+                    <p>My Current Weather: {entry.current_weather}</p>
+                    <p>Mood: {entry.current_mood}</p>
                 </div>
             )
         })
@@ -31,6 +36,7 @@ const TherapistDashboard = () => {
             return (
                 <div key={`client-${client.user_id}`}>
                     <p>Client: {client.first_name} {client.last_name}</p>
+                    <p>Username: {client.username}</p>
                     {renderJournals(client.journal_entries)}
                 </div>
             )

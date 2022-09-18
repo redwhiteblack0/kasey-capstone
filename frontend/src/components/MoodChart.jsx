@@ -69,7 +69,6 @@ import {
   const labels = createDatesArr().reverse();
 
   
-
   const MoodChart = ({moods}) => {
     const data = {
       labels,

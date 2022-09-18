@@ -4,12 +4,14 @@ import axios from "axios";
 import CreateJournalEntry from "../../components/CreateJournalEntry";
 import MoodChart from "../../components/MoodChart";
 
-const JournalPage = () => {
+import {API_BASE_URL} from "../../config/api";
+
+const ClientJournalPage = () => {
     const [showCreateEntry, setShowCreateEntry] = useState(false);
     const [journalEntries, setJournalEntries] = useState([]);
     useEffect(() => {
         const getJournalEntries = async () => {
-            const response = await axios.get("http://localhost:8000/journal/entries");
+            const response = await axios.get(`${API_BASE_URL}/journal/entries`);
             console.log("Entries: ", response.data);
 
             setJournalEntries(response.data.entries);
@@ -66,4 +68,4 @@ const JournalPage = () => {
     )
 }
 
-export default JournalPage;
+export default ClientJournalPage;

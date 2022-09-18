@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 
+import {API_BASE_URL} from "../config/api";
+
 const AuthContext = createContext();
 
 export default AuthContext;
@@ -11,15 +13,10 @@ function setUserObject(user) {
   if (!user) {
     return null;
   }
-  return {
-    username: user.username,
-    id: user.user_id,
-    first_name: user.first_name,
-  };
+  return user;
 }
 
 export const AuthProvider = ({ children }) => {
-  const BASE_URL = "http://127.0.0.1:8000/api/auth";
   const userToken = JSON.parse(localStorage.getItem("token"));
   const decodedUser = userToken ? jwtDecode(userToken) : null;
   console.log("Decoded user: ", decodedUser);
@@ -36,16 +33,13 @@ export const AuthProvider = ({ children }) => {
         email: registerData.email,
         first_name: registerData.firstName,
         last_name: registerData.lastName,
+        user_city: registerData.user_city,
         role: registerData.role
       };
-      let response = await axios.post(`${BASE_URL}/register/`, finalData);
-      if (response.status === 201) {
-        console.log("Successful registration! Log in to access token");
+      let response = await axios.post(`${API_BASE_URL}/register/`, finalData);
+      console.log("Successful registration! Log in to access token");
         setIsServerError(false);
         navigate("/login");
-      } else {
-        navigate("/register");
-      }
     } catch (error) {
       console.log(error.response.data);
     }
@@ -65,7 +59,7 @@ export const AuthProvider = ({ children }) => {
       // } else {
       //   navigate("/register");
       // } 
-      let response = await axios.post(`${BASE_URL}/login/`, loginData);
+      let response = await axios.post(`${API_BASE_URL}/login/`, loginData);
       localStorage.setItem("token", JSON.stringify(response.data.access));
         setToken(JSON.parse(localStorage.getItem("token")));
         let loggedInUser = jwtDecode(response.data.access);
