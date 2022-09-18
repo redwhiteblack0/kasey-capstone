@@ -12,5 +12,5 @@ ReactDOM.render(
       </AuthProvider>
     </Router>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById("root") 
 );
