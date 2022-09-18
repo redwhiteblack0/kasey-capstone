@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 
+import JournalEntryCard from "../../components/JournalEntryCard";
 import CreateJournalEntry from "../../components/CreateJournalEntry";
 import MoodChart from "../../components/MoodChart";
 
@@ -23,13 +24,7 @@ const ClientJournalPage = () => {
     const renderJournalEntries = (entries) => {
         return entries.map((entry, i) => {
             return (
-                <div key={`journal-entry-${entry.id}`}>
-                    <p>Title: {entry.title}</p>
-                    <p>Description: {entry.description}</p>
-                    <p>Date Created: {entry.date_created}</p>
-                    <p>Current Weather: {entry.current_weather}</p>
-                    <p>Current Mood: {entry.current_mood}</p>
-                </div>
+                <JournalEntryCard entry={entry} />
             )
         })
     }

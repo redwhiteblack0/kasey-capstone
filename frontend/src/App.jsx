@@ -22,21 +22,23 @@ function App() {
   return (
     <div>
       <Navbar />
-      <Routes>
-        <Route
-          path="/"
-          element={<HomePage />}
-        />
-        <Route path="/register" exact element={<RegisterPage />} />
-        <Route path="/login" exact element={<LoginPage />} />
-        <Route element={<ClientPrivateRoutes />}>
-          <Route path="/journal" element={<ClientJournalPage />} />
-        </Route>
-        <Route element={<TherapistPrivateRoutes />}>
-          <Route path="/therapist" element={<TherapistPage />} />
-          <Route path="/therapist/dashboard" exact element={<TherapistDashboard />} />
-        </Route>
-      </Routes>
+      <div className="app">
+        <Routes>
+          <Route
+            path="/"
+            element={<HomePage />}
+          />
+          <Route path="/register" exact element={<RegisterPage />} />
+          <Route path="/login" exact element={<LoginPage />} />
+          <Route element={<ClientPrivateRoutes />}>
+            <Route path="/journal" element={<ClientJournalPage />} />
+          </Route>
+          <Route element={<TherapistPrivateRoutes />}>
+            <Route path="/therapist" element={<TherapistPage />} />
+            <Route path="/therapist/dashboard" exact element={<TherapistDashboard />} />
+          </Route>
+        </Routes>
+      </div>
       <Footer />
     </div>
   );

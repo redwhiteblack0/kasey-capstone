@@ -20,30 +20,37 @@ const LoginPage = () => {
 
   return (
     <div className="container">
+      <div className={"loginHeader"}>
+        <h2>Login</h2>
+      </div>
       <form className="form" onSubmit={handleSubmit}>
-        <label>
-          Username:{" "}
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Password:{" "}
-          <input
-            type="text"
-            name="password"
-            value={formData.password}
-            onChange={handleInputChange}
-          />
-        </label>
+        <div className={"inputField"}>
+          <label>
+            Username:{" "}
+          </label>
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleInputChange}
+            />
+        </div>
+        <div className={"inputField"}>
+          <label>
+            Password:{" "}
+          </label>
+            <input
+              type="text"
+              name="password"
+              value={formData.password}
+              onChange={handleInputChange}
+            />
+        </div>
         {isServerError ? (
           <p className="error">Login failed, incorrect credentials!</p>
         ) : null}
         <Link to="/register">Click to register!</Link>
-        <button>Login!</button>
+        <button type="submit" className={"loginButton"}>Login!</button>
       </form>
     </div>
   );

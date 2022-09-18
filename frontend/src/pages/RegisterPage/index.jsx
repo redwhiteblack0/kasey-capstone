@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
 
+import "./index.css";
+
 const RegisterPage = () => {
   const { registerUser } = useContext(AuthContext);
 
@@ -21,73 +23,86 @@ const RegisterPage = () => {
 
   return (
     <div className="container">
+      <div>
+        <h1>Registration Form</h1>
+      </div>
       <form className="form" onSubmit={handleSubmit}>
-        <label>
-          Username:{" "}
+        <div className={"inputField"}>
+          <label>Username:{" "}</label>
           <input
             type="text"
             name="username"
             value={formData.username}
             onChange={handleInputChange}
           />
-        </label>
-        <label>
-          First Name:{" "}
-          <input
-            type="text"
-            name="first_name"
-            value={formData.first_name}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Last Name:{" "}
-          <input
-            type="text"
-            name="last_name"
-            value={formData.last_name}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Closest City:{" "}
-          <select name="user_city" value={formData.userCity} onChange={handleInputChange}>
-            <option value="Boston">Boston</option>
-            <option value="Sacramento">Sacramento</option>
-            <option value="London">London</option>
-            <option value="Beijing">Beijing</option>
-            <option value="Lima">Lima</option>
-          </select>
-        </label>
+        </div>
+        <div className={"inputField"}>
+          <label>
+            First Name:{" "}
+          </label>
+            <input
+              type="text"
+              name="first_name"
+              value={formData.first_name}
+              onChange={handleInputChange}
+            />
+        </div>
+ 
+        <div className={"inputField"}>
+          <label>
+            Last Name:{" "}
+          </label>
+            <input
+              type="text"
+              name="last_name"
+              value={formData.last_name}
+              onChange={handleInputChange}
+            />
+        </div>
+        <div className={"inputField"}>
+          <label>
+            Closest City:{" "}
+          </label>
+            <select name="user_city" value={formData.userCity} onChange={handleInputChange}>
+              <option value="Boston">Boston</option>
+              <option value="Sacramento">Sacramento</option>
+              <option value="London">London</option>
+              <option value="Beijing">Beijing</option>
+              <option value="Lima">Lima</option>
+            </select>
+        </div>
+ 
+        <div className={"inputField"}>
         <label>
           Email:{" "}
+        </label>
           <input
             type="text"
             name="email"
             value={formData.email}
             onChange={handleInputChange}
           />
-        </label>
-        <label>
-          Password:{" "}
-          <input
-            type="text"
-            name="password"
-            value={formData.password}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Role:{" "}
-          <select onChange={handleInputChange} value={formData.role} name="role" id="role">
-            <option value="THERAPIST">Therapist</option>
-            <option value="CLIENT">Client</option>
-          </select>
-        </label>
-        <p style={{ fontSize: "12px" }}>
-          NOTE: Make this an uncommon password with characters, numbers, and
-          special characters!
-        </p>
+        </div>
+        <div className={"inputField"}>
+          <label>
+            Password:{" "}
+          </label>
+            <input
+              type="text"
+              name="password"
+              value={formData.password}
+              onChange={handleInputChange}
+            />
+        </div>
+        <div className={"inputField"}>
+          <label>
+            Role:{" "}
+          </label>
+            <select onChange={handleInputChange} value={formData.role} name="role" id="role">
+              <option value="THERAPIST">Therapist</option>
+              <option value="CLIENT">Client</option>
+            </select>
+        </div>
         <button>Register!</button>
       </form>
     </div>

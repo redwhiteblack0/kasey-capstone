@@ -11,6 +11,22 @@
 html {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 p {
@@ -18,19 +34,8 @@ p {
 }
 
 button {
-  background-color: transparent;
-  border: 2px solid steelblue;
-  color: steelblue;
-  font-size: 1rem;
-  font-family: inherit;
-  max-width: 100px;
-  padding: 0.5rem 0.5rem;
-}
-
-button:hover {
-  cursor: pointer;
-  color: white;
-  background-color: steelblue;
+  font: inherit;
+  border: none;
 }
 
 .container {
@@ -55,4 +60,9 @@ button:hover {
   margin: 5px;
   padding: 3px 7px;
   font-size: 17px;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 1.5rem 2.5rem;
 }

@@ -36,7 +36,7 @@ const HomePage = () => {
       <div>
         {user ?
           <h1>Hello {user.username}</h1> :
-          <h1>Welcome to our app</h1>
+          <h1>How are you today?</h1>
         }
       </div>
       <div>
