@@ -8,10 +8,6 @@ const useCustomForm = (initialValues = {}, onSubmit) => {
       setFormValues({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSelectChange = (e) => {
-    
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);

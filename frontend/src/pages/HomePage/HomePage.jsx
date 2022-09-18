@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import {Link} from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 import axios from "axios";
@@ -19,10 +20,11 @@ const HomePage = () => {
     const getCurrentWeather = async () => {
       console.log("User data: ", user);
       const weatherAPIKey = "f2d6edaf76a08d251081138303dc4d4d0";
-      const city = user ? user.city || "Sacramento" : "Sacramento";
-      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherAPIKey}`);
+      const city = user ? user.city || "Boston" : "Boston";
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Boston&appid=7153eddf8673183aab1b3ea688313beb`);
 
       console.log("Weather: ", response.data);
+      setCurrentWeather(response.data);
     }
 
     getCurrentWeather();
@@ -37,10 +39,17 @@ const HomePage = () => {
       </div>
       <div>
         {currentWeather ?
-          <p>{JSON.stringify(currentWeather)}</p> :
+          <p>Current Weather: {currentWeather.weather[0].description}</p> :
           <p>Getting current weather...</p>
         }
       </div>
+      {user &&
+        <div>
+          <Link to="/journal">
+            <h3>My Journal</h3>
+          </Link>
+        </div>
+      }
     </div>
   );
 };

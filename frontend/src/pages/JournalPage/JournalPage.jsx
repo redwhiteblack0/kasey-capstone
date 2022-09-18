@@ -25,6 +25,7 @@ const JournalPage = () => {
                     <p>Title: {entry.title}</p>
                     <p>Description: {entry.description}</p>
                     <p>Date Created: {entry.date_created}</p>
+                    <p>Current Weather: {entry.current_weather}</p>
                     <p>Current Mood: {entry.current_mood}</p>
                 </div>
             )
@@ -33,7 +34,7 @@ const JournalPage = () => {
     return (
         <div>
             <div>
-                <h1>Journal</h1>
+                <h1>My Journal</h1>
             </div>
             <div>
                 <button onClick={() => setShowCreateEntry(!showCreateEntry)}>{showCreateEntry ? "Cancel" : "Create"}</button>
@@ -54,7 +55,7 @@ const JournalPage = () => {
                 <div>
                     <h2>Mood Chart</h2>
                     {journalEntries ?
-                        <MoodChart /> :
+                        <MoodChart moods={journalEntries.map(({current_mood}) => current_mood)} /> :
                         <div>
                             <p>Loading...</p>
                         </div>
